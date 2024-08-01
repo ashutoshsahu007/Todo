@@ -1,17 +1,25 @@
+import { useState } from "react";
 import AddTodo from "./components/AddTodo";
 import AppName from "./components/AppName";
 import TodoItems from "./components/TodoItems";
 
 const App = () => {
-  const todoItems = [
-    { name: "Buy Milk", dueDate: "04/10/2023" },
-    { name: "Go to College", dueDate: "23/09/2023" },
-    { name: "Proppose Her", dueDate: "09/11/2023" },
-  ];
+  const [todoItems, setTodoItems] = useState([]);
+
+  const handleNewItem = (itemName, itemDueDate) => {
+    setTodoItems([
+      ...todoItems,
+      {
+        name: itemName,
+        dueDate: itemDueDate,
+      },
+    ]);
+  };
+
   return (
     <center className="todo-container">
       <AppName />
-      <AddTodo />
+      <AddTodo onNewItem={handleNewItem} />
       <TodoItems todoItems={todoItems} />
     </center>
   );
