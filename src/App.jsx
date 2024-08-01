@@ -18,6 +18,11 @@ const App = () => {
     ]);
   };
 
+  const handleDeleteItem = (todoItemName) => {
+    const newTodoItems = todoItems.filter((item) => item.name !== todoItemName);
+    setTodoItems(newTodoItems);
+  };
+
   return (
     <center className="todo-container">
       <AppName />
@@ -25,7 +30,7 @@ const App = () => {
       <AddTodo onNewItem={handleNewItem} />
       {todoItems.length === 0 && <WelcomeMessage />}
 
-      <TodoItems todoItems={todoItems} />
+      <TodoItems todoItems={todoItems} onDeleteClick={handleDeleteItem} />
     </center>
   );
 };
