@@ -3,6 +3,8 @@ import AddTodo from "./components/AddTodo";
 import AppName from "./components/AppName";
 import TodoItems from "./components/TodoItems";
 
+import WelcomeMessage from "./components/WelcomeMessage";
+
 const App = () => {
   const [todoItems, setTodoItems] = useState([]);
 
@@ -19,7 +21,10 @@ const App = () => {
   return (
     <center className="todo-container">
       <AppName />
+
       <AddTodo onNewItem={handleNewItem} />
+      {todoItems.length === 0 && <WelcomeMessage />}
+
       <TodoItems todoItems={todoItems} />
     </center>
   );
